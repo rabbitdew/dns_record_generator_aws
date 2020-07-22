@@ -1,8 +1,16 @@
 #!/usr/bin/env python3
 
 ## Use the script to create the files and run this command to use the files:
+#
 # $mkdir ./json
-# $find json -type f -print | while read i; do docker run --rm  --name aws -v "${PWD}"/aws_creds:/root/.aws  -v "${PWD}"/json:/tmp/json amazon/aws-cli route53 change-resource-record-sets --hosted-zone-id /hostedzone/ZONEID --change-batch file:///tmp/"${i}";done
+# $find json -type f -print | while read i; \
+#  do docker run --rm  --name aws \
+#  -v "${PWD}"/aws_creds:/root/.aws \
+#  -v "${PWD}"/json:/tmp/json amazon/aws-cli \
+#  route53 change-resource-record-sets \
+#  --hosted-zone-id /hostedzone/ZONEID \
+#  --change-batch file:///tmp/"${i}"; \
+# done
 
 def createArecord(dnsName,dnsValue):
   return('''
